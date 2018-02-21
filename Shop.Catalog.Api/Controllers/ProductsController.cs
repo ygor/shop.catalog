@@ -27,10 +27,10 @@ namespace Shop.Catalog.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateStockAsync([FromBody] UpdateStock updateStock,
+        public async Task<IActionResult> UpdateStockAsync([FromBody] UpdateStockRequest updateStockRequest,
             CancellationToken cancellationToken)
         {
-            return await _updateStockRoute.ExecuteAsync(updateStock.ProductId, updateStock.AmountChanged,
+            return await _updateStockRoute.ExecuteAsync(updateStockRequest.ProductId, updateStockRequest.AmountChanged,
                 cancellationToken);
         }
     }

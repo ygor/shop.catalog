@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Akka.Actor;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Shop.Catalog.Api.Dtos;
+using Shop.Catalog.Api.Enums;
 using Shop.Catalog.Application.Actors;
 
 namespace Shop.Catalog.Api.Routes
@@ -28,8 +30,11 @@ namespace Shop.Catalog.Api.Routes
                 cancellationToken
             );
 
-            if (result is ProductsActor.ProductNotFound || result is ProductsActor.InsuffientStock)
-                return new BadRequestResult();
+            if (result is ProductsActor.ProductNotFound)
+                return new NotFoundObjectResult(new ErrorResponse {Code = Error.ProductNotFound.ToString()});
+
+            if (result is ProductsActor.InsuffientStock)
+                return new BadRequestObjectResult(new ErrorResponse {Code = Error.InsuffientStock.ToString()});
 
             return new OkResult();
         }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NSwag.AspNetCore;
 using Shop.Catalog.Api.Routes;
 using Shop.Catalog.Application.Actors;
 using Shop.Catalog.Infrastructure.Repositories;
@@ -11,7 +12,7 @@ namespace Shop.Catalog.Api
 {
     public class Startup
     {
-        private const string Name = "products-service";
+        private const string Name = "catalog-service";
 
         public Startup(IConfiguration configuration)
         {
@@ -39,7 +40,11 @@ namespace Shop.Catalog.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+            if (env.IsDevelopment())
+            {
+                app.UseSwaggerUi(typeof(Startup).Assembly, new SwaggerUiSettings());
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseMvc();
         }
