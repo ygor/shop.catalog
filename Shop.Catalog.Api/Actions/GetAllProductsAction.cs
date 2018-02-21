@@ -6,14 +6,14 @@ using Microsoft.Extensions.Logging;
 using Shop.Catalog.Application.Actors;
 using Shop.Catalog.Domain.Models;
 
-namespace Shop.Catalog.Api.Routes
+namespace Shop.Catalog.Api.Actions
 {
-    public class GetAllProductsRoute : IGetAllProductsRoute
+    public class GetAllProductsAction : IGetAllProductsAction
     {
-        private readonly ILogger<GetAllProductsRoute> _logger;
+        private readonly ILogger<GetAllProductsAction> _logger;
         private readonly IActorRef _productsActor;
 
-        public GetAllProductsRoute(IProductsActorProvider provider, ILogger<GetAllProductsRoute> logger)
+        public GetAllProductsAction(IProductsActorProvider provider, ILogger<GetAllProductsAction> logger)
         {
             _logger = logger;
             _productsActor = provider.Provide();

@@ -1,6 +1,6 @@
 ﻿namespace Shop.Catalog.Api.Enums
 {
-    public enum Error
+    public enum ErrorCode
     {
         ProductNotFound,
         InsuffientStock

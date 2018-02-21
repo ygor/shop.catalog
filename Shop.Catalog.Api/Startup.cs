@@ -1,10 +1,14 @@
-﻿using Akka.Actor;
+﻿using System.Buffers;
+using Akka.Actor;
+using JsonApiSerializer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NSwag.AspNetCore;
-using Shop.Catalog.Api.Routes;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.ObjectPool;
+using Shop.Catalog.Api.Actions;
 using Shop.Catalog.Application.Actors;
 using Shop.Catalog.Infrastructure.Repositories;
 
@@ -31,10 +35,26 @@ namespace Shop.Catalog.Api
 
             services.AddSingleton<IProductsRepository, ProductsRepository>();
             services.AddSingleton<IProductsActorProvider, ProductsActorProvider>();
-            services.AddSingleton<IGetAllProductsRoute, GetAllProductsRoute>();
-            services.AddSingleton<IUpdateStockRoute, UpdateStockRoute>();
+            services.AddSingleton<IGetAllProductsAction, GetAllProductsAction>();
+            services.AddSingleton<IUpdateStockAction, UpdateStockAction>();
 
-            services.AddMvc();
+            services.AddMvc(opt =>
+            {
+                var sp = services.BuildServiceProvider();
+                var logger = sp.GetService<ILoggerFactory>();
+                var objectPoolProvider = sp.GetService<ObjectPoolProvider>();
+
+                var serializerSettings = new JsonApiSerializerSettings();
+
+                var jsonApiFormatter = new JsonOutputFormatter(serializerSettings, ArrayPool<char>.Shared);
+                opt.OutputFormatters.RemoveType<JsonOutputFormatter>();
+                opt.OutputFormatters.Insert(0, jsonApiFormatter);
+
+                var jsonApiInputFormatter = new JsonInputFormatter(logger.CreateLogger<JsonInputFormatter>(),
+                    serializerSettings, ArrayPool<char>.Shared, objectPoolProvider);
+                opt.InputFormatters.RemoveType<JsonInputFormatter>();
+                opt.InputFormatters.Insert(0, jsonApiInputFormatter);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +62,6 @@ namespace Shop.Catalog.Api
         {
             if (env.IsDevelopment())
             {
-                app.UseSwaggerUi(typeof(Startup).Assembly, new SwaggerUiSettings());
                 app.UseDeveloperExceptionPage();
             }
 

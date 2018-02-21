@@ -16,7 +16,7 @@ namespace Shop.Catalog.Application.Actors
             _repository = repository;
 
             Receive<GetAllProducts>(_ => Sender.Tell(GetAll()));
-            Receive<UpdateStock>(message => Sender.Tell(UpdateStockAction(message)));
+            Receive<UpdateStock>(message => Sender.Tell(OnUpdateStock(message)));
         }
 
         public IReadOnlyCollection<Product> GetAll()
@@ -24,7 +24,7 @@ namespace Shop.Catalog.Application.Actors
             return new ReadOnlyCollection<Product>(_repository.GetAll().ToList());
         }
 
-        public ProductEvent UpdateStockAction(UpdateStock message)
+        public ProductEvent OnUpdateStock(UpdateStock message)
         {
             var maybeProduct = _repository.GetById(message.ProductId);
 
