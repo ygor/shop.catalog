@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Catalog.Api", "Shop.Ca
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D50AF69C-0C82-4F0B-8DE0-2B83405A0B69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Catalog.Domain", "Shop.Catalog.Domain\Shop.Catalog.Domain.csproj", "{42267BD1-7B93-4E92-983A-BA66725B6810}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Catalog.Infrastructure", "Shop.Catalog.Infrastructure\Shop.Catalog.Infrastructure.csproj", "{995688C4-2247-4B4C-AA8C-0D9789540BDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Catalog.Application", "Shop.Catalog.Application\Shop.Catalog.Application.csproj", "{5EDB14D3-7D76-47F1-B578-DDDB5437302E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +27,18 @@ Global
 		{D50AF69C-0C82-4F0B-8DE0-2B83405A0B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D50AF69C-0C82-4F0B-8DE0-2B83405A0B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D50AF69C-0C82-4F0B-8DE0-2B83405A0B69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42267BD1-7B93-4E92-983A-BA66725B6810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42267BD1-7B93-4E92-983A-BA66725B6810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42267BD1-7B93-4E92-983A-BA66725B6810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42267BD1-7B93-4E92-983A-BA66725B6810}.Release|Any CPU.Build.0 = Release|Any CPU
+		{995688C4-2247-4B4C-AA8C-0D9789540BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{995688C4-2247-4B4C-AA8C-0D9789540BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995688C4-2247-4B4C-AA8C-0D9789540BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{995688C4-2247-4B4C-AA8C-0D9789540BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EDB14D3-7D76-47F1-B578-DDDB5437302E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EDB14D3-7D76-47F1-B578-DDDB5437302E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EDB14D3-7D76-47F1-B578-DDDB5437302E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EDB14D3-7D76-47F1-B578-DDDB5437302E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

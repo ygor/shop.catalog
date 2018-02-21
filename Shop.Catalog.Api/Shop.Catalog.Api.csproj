@@ -10,11 +10,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Akka" Version="1.3.4" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shop.Catalog.Application\Shop.Catalog.Application.csproj" />
+    <ProjectReference Include="..\Shop.Catalog.Domain\Shop.Catalog.Domain.csproj" />
   </ItemGroup>
 
 </Project>
