@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using Akka.Actor;
-using JsonApiSerializer.JsonApi;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Shop.Catalog.Api.Dtos;
 using Shop.Catalog.Api.Enums;
 using Shop.Catalog.Application.Actors;
 
@@ -50,9 +49,9 @@ namespace Shop.Catalog.Api.Actions
             }
         }
 
-        private IEnumerable<Error> CreateErrorResponse(ErrorCode code)
+        private ErrorResponse CreateErrorResponse(ErrorCode code)
         {
-            return new[] {new Error {Code = code.ToString()}};
+            return new ErrorResponse {Code = code.ToString()};
         }
     }
 }
