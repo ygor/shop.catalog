@@ -8,7 +8,6 @@ using Shop.Catalog.Domain.Models;
 
 namespace Shop.Catalog.Api.Controllers
 {
-
     [ApiVersion("1.0")]
     [Route("/v{version:apiVersion}/products")]
     public class ProductsController

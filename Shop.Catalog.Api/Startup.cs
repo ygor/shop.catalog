@@ -27,9 +27,18 @@ namespace Shop.Catalog.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore().AddJsonFormatters().AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
+            services.AddSingleton<IActorRefFactory>(_ =>
+                ActorSystem.Create(Name.Replace(".", "-").ToLowerInvariant()));
 
-            services.AddMvc(options => options.AddMetricsResourceFilter());
+            services.AddSingleton<IProductsRepository, ProductsRepository>();
+            services.AddSingleton<IProductsActorProvider, ProductsActorProvider>();
+            services.AddSingleton<IGetAllProductsAction, GetAllProductsAction>();
+            services.AddSingleton<IUpdateStockAction, UpdateStockAction>();
+
+            services
+                .AddMvcCore(options => options.AddMetricsResourceFilter())
+                .AddJsonFormatters()
+                .AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
             services.AddApiVersioning();
             services.AddSwaggerGen(
                 options =>
@@ -46,13 +55,6 @@ namespace Shop.Catalog.Api
                                 Version = description.ApiVersion.ToString()
                             });
                 });
-
-            services.AddSingleton<IActorRefFactory>(_ => ActorSystem.Create(Name));
-
-            services.AddSingleton<IProductsRepository, ProductsRepository>();
-            services.AddSingleton<IProductsActorProvider, ProductsActorProvider>();
-            services.AddSingleton<IGetAllProductsAction, GetAllProductsAction>();
-            services.AddSingleton<IUpdateStockAction, UpdateStockAction>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
