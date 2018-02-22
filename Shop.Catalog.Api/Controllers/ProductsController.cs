@@ -8,7 +8,9 @@ using Shop.Catalog.Domain.Models;
 
 namespace Shop.Catalog.Api.Controllers
 {
-    [Route("/products")]
+
+    [ApiVersion("1.0")]
+    [Route("/v{version:apiVersion}/products")]
     public class ProductsController
     {
         private readonly IGetAllProductsAction _getAllProductsAction;

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore;
+﻿using App.Metrics.AspNetCore;
+using App.Metrics.AspNetCore.Health;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Shop.Catalog.Api
@@ -14,6 +16,8 @@ namespace Shop.Catalog.Api
         {
             return WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseHealth()
+                .UseMetrics()
                 .Build();
         }
     }
