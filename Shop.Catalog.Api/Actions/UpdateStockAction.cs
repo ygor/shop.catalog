@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Shop.Catalog.Api.Dtos;
 using Shop.Catalog.Api.Enums;
 using Shop.Catalog.Application.Actors;
+using Shop.Catalog.Domain.Models;
 
 namespace Shop.Catalog.Api.Actions
 {
@@ -39,7 +40,7 @@ namespace Shop.Catalog.Api.Actions
             switch (result)
             {
                 case ProductsActor.StockUpdated stockUpdated:
-                    return new OkObjectResult(stockUpdated.Product);
+                    return new OkObjectResult(new Envelope<Product> {Data = stockUpdated.Product});
                 case ProductsActor.ProductNotFound _:
                     return new NotFoundObjectResult(CreateErrorResponse(ErrorCode.ProductNotFound));
                 case ProductsActor.InsuffientStock _:
@@ -49,9 +50,9 @@ namespace Shop.Catalog.Api.Actions
             }
         }
 
-        private ErrorResponse CreateErrorResponse(ErrorCode code)
+        private Envelope<Product> CreateErrorResponse(ErrorCode code)
         {
-            return new ErrorResponse {Code = code.ToString()};
+            return new Envelope<Product> {Error = new Error {Code = code}};
         }
     }
 }

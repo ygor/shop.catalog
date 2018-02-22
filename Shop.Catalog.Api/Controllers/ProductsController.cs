@@ -21,7 +21,7 @@ namespace Shop.Catalog.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Product>> GetAsync(CancellationToken cancellationToken)
+        public async Task<Envelope<IEnumerable<Product>>> GetAsync(CancellationToken cancellationToken)
         {
             return await _getAllProductsAction.ExecuteAsync(cancellationToken);
         }

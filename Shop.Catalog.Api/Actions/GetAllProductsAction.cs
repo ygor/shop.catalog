@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Akka.Actor;
 using Microsoft.Extensions.Logging;
+using Shop.Catalog.Api.Dtos;
 using Shop.Catalog.Application.Actors;
 using Shop.Catalog.Domain.Models;
 
@@ -19,14 +20,16 @@ namespace Shop.Catalog.Api.Actions
             _productsActor = provider.Provide();
         }
 
-        public async Task<IEnumerable<Product>> ExecuteAsync(CancellationToken cancellationToken)
+        public async Task<Envelope<IEnumerable<Product>>> ExecuteAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Requesting all products");
 
-            return await _productsActor.Ask<IEnumerable<Product>>(
+            var products = await _productsActor.Ask<IEnumerable<Product>>(
                 new ProductsActor.GetAllProducts(),
                 cancellationToken
             );
+
+            return new Envelope<IEnumerable<Product>> {Data = products};
         }
     }
 }
