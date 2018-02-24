@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  shop.catalog.api:
-    image: shop.catalog.api
+  shop-catalog-api:
+    image: shop-catalog-api
     build:
       context: .
       dockerfile: Shop.Catalog.Api/Dockerfile

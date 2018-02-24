@@ -1,12 +1,13 @@
 ﻿using Akka.Actor;
+using CorrelationId;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Shop.Catalog.Api.Actions;
+using Shop.Catalog.Api.Middleware;
 using Shop.Catalog.Application.Actors;
 using Shop.Catalog.Infrastructure.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
@@ -39,6 +40,8 @@ namespace Shop.Catalog.Api
                 .AddMvcCore(options => options.AddMetricsResourceFilter())
                 .AddJsonFormatters()
                 .AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
+
+            services.AddCorrelationId();
             services.AddApiVersioning();
             services.AddSwaggerGen(
                 options =>
@@ -61,10 +64,12 @@ namespace Shop.Catalog.Api
         public void Configure(
             IApplicationBuilder app,
             IHostingEnvironment env,
-            ILoggerFactory loggerFactory,
             IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+
+            app.UseCorrelationId();
+            app.UseMiddleware<TraceIdentifierLoggingMiddleware>();
 
             app.UseMvc();
             app.UseSwagger();

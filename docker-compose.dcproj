@@ -5,8 +5,8 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>d50af69c-0c82-4f0b-8de0-2b83405a0b69</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
-    <DockerServiceUrl>http://localhost:{ServicePort}/api/values</DockerServiceUrl>
-    <DockerServiceName>shop.catalog.api</DockerServiceName>
+    <DockerServiceUrl>http://localhost:{ServicePort}/v1/products</DockerServiceUrl>
+    <DockerServiceName>shop-catalog-api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
