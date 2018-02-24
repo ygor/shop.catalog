@@ -10,7 +10,7 @@ namespace Shop.Catalog.Api
 {
     public static class Program
     {
-        private const string OutputTemplate = "[{Timestamp:HH:mm:ss} {Level:u3} {TraceIdentifier}] {Message:lj}{NewLine}";
+        private const string OutputTemplate = "[{Timestamp:HH:mm:ss} {Level:u3} {TraceIdentifier}] {Message:lj}{NewLine}"; // TODO: move to appsettings
 
         public static int Main(string[] args)
         {
