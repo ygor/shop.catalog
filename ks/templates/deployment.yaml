@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: shop-catalog-api 
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics-text"  
+      labels:
+        run: shop-catalog-api
+    spec:
+      containers:
+      - image: ygor/shop-catalog-api:20180307110754
+        imagePullPolicy: Always
+        name: shop-catalog-api
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+status: {}
