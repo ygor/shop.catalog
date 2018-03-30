@@ -3,15 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Catalog.Api", "Shop.Catalog.Api\Shop.Catalog.Api.csproj", "{E6DA45C8-E9C0-4A9C-A6F7-4B159F58EB5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Catalog.Api", "src\Shop.Catalog.Api\Shop.Catalog.Api.csproj", "{E6DA45C8-E9C0-4A9C-A6F7-4B159F58EB5E}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D50AF69C-0C82-4F0B-8DE0-2B83405A0B69}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "build\docker-compose.dcproj", "{D50AF69C-0C82-4F0B-8DE0-2B83405A0B69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Catalog.Domain", "Shop.Catalog.Domain\Shop.Catalog.Domain.csproj", "{42267BD1-7B93-4E92-983A-BA66725B6810}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Catalog.Domain", "src\Shop.Catalog.Domain\Shop.Catalog.Domain.csproj", "{42267BD1-7B93-4E92-983A-BA66725B6810}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Catalog.Infrastructure", "Shop.Catalog.Infrastructure\Shop.Catalog.Infrastructure.csproj", "{995688C4-2247-4B4C-AA8C-0D9789540BDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Catalog.Infrastructure", "src\Shop.Catalog.Infrastructure\Shop.Catalog.Infrastructure.csproj", "{995688C4-2247-4B4C-AA8C-0D9789540BDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Catalog.Application", "Shop.Catalog.Application\Shop.Catalog.Application.csproj", "{5EDB14D3-7D76-47F1-B578-DDDB5437302E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Catalog.Application", "src\Shop.Catalog.Application\Shop.Catalog.Application.csproj", "{5EDB14D3-7D76-47F1-B578-DDDB5437302E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Catalog.Api.Test", "test\Shop.Catalog.Api.Test\Shop.Catalog.Api.Test.csproj", "{6CE55C7F-61E3-4DEA-807B-9263A7CFC56B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02E230D6-04E1-4D25-94E3-86B38A7E0C6F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{2F56EF2E-65A1-4998-9392-0F9F2EC0EF0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{1860FA62-F824-4421-9946-99600EE83CD6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shop.Catalog.Application.Test", "test\Shop.Catalog.Application.Test\Shop.Catalog.Application.Test.csproj", "{1BDB9AD1-16FF-44C8-9379-31D727C0F4C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +49,26 @@ Global
 		{5EDB14D3-7D76-47F1-B578-DDDB5437302E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EDB14D3-7D76-47F1-B578-DDDB5437302E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EDB14D3-7D76-47F1-B578-DDDB5437302E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE55C7F-61E3-4DEA-807B-9263A7CFC56B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE55C7F-61E3-4DEA-807B-9263A7CFC56B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE55C7F-61E3-4DEA-807B-9263A7CFC56B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE55C7F-61E3-4DEA-807B-9263A7CFC56B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BDB9AD1-16FF-44C8-9379-31D727C0F4C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BDB9AD1-16FF-44C8-9379-31D727C0F4C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BDB9AD1-16FF-44C8-9379-31D727C0F4C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BDB9AD1-16FF-44C8-9379-31D727C0F4C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E6DA45C8-E9C0-4A9C-A6F7-4B159F58EB5E} = {02E230D6-04E1-4D25-94E3-86B38A7E0C6F}
+		{D50AF69C-0C82-4F0B-8DE0-2B83405A0B69} = {1860FA62-F824-4421-9946-99600EE83CD6}
+		{42267BD1-7B93-4E92-983A-BA66725B6810} = {02E230D6-04E1-4D25-94E3-86B38A7E0C6F}
+		{995688C4-2247-4B4C-AA8C-0D9789540BDE} = {02E230D6-04E1-4D25-94E3-86B38A7E0C6F}
+		{5EDB14D3-7D76-47F1-B578-DDDB5437302E} = {02E230D6-04E1-4D25-94E3-86B38A7E0C6F}
+		{6CE55C7F-61E3-4DEA-807B-9263A7CFC56B} = {2F56EF2E-65A1-4998-9392-0F9F2EC0EF0B}
+		{1BDB9AD1-16FF-44C8-9379-31D727C0F4C4} = {2F56EF2E-65A1-4998-9392-0F9F2EC0EF0B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F6D45CFF-FE32-4ECC-B68C-F0037D64E858}

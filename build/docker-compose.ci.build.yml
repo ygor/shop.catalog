@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  ci-build:
+    image: ygor/aspnetcore-build:latest
+    volumes:
+      - ./../:/solution
+    working_dir: /solution/build
+    command:
+      - /bin/bash
+      - build.sh

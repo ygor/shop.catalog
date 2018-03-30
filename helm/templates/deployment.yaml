@@ -7,12 +7,11 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/path: "/metrics-text"  
       labels:
-        run: shop-catalog-api
+        app: shop-catalog-api
     spec:
       containers:
       - image: ygor/shop-catalog-api:20180307110754
