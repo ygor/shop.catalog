@@ -6,21 +6,13 @@ var testProjects = new Dictionary<string, string> {
     { "application", "./../test/Shop.Catalog.Application.Test/Shop.Catalog.Application.Test.csproj" },
     };
 
-Task("Restore")
-    .Does(() =>
-{
-    DotNetCoreRestore(solution);
-});
-
 Task("Build")
-    .IsDependentOn("Restore")
     .Does(() =>
 {
     DotNetCoreBuild(solution,
         new DotNetCoreBuildSettings()
         {
             Configuration = configuration,
-            NoRestore = true,
             ArgumentCustomization = args => args.Append($"/p:DebugType=Full")
         });
 });
